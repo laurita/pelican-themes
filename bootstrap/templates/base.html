@@ -6,6 +6,13 @@
 	<meta name="description" content="">
 	<meta name="author" content="{{ AUTHOR }}">
 
+        {% if article and article.latex %}
+            {{ article.latex }}
+        {% endif %}
+        {% if page and page.latex %}
+            {{ page.latex }}
+        {% endif %}
+
 	<!-- HTML5 shim, for IE6-8 support of HTML elements -->
 	<!--[if lt IE 9]>
 		<script src="{{ SITEURL }}/theme/html5.js"></script>
@@ -25,6 +32,7 @@
     {% endif %}
 
 	{% include "analytics.html" %}
+        {% include "piwik.html" %}
 	{% include "disqus.html" %}
 </head>
 <body>
@@ -55,14 +63,14 @@
 	<div class="container-fluid">
 	  <div class="sidebar">
 		<div class="well">
-			<h3>Blogroll</h3>
+			<h3>Feeds</h3>
 			<ul>
-				{% for name, link in LINKS %}
+				{% for name, link in FEEDS %}
 				<li><a href="{{ link }}">{{ name }}</a></li>
 				{% endfor %}
 			</ul>
 			<div class="social">
-			<h3>Social</h3>
+			<h3>Links</h3>
 			<ul>
 				{% for name, link in SOCIAL %}
 				<li><a href="{{ link }}">{{ name }}</a></li>
@@ -72,7 +80,6 @@
 		</div>
 	  </div>
 	  <div class="content">
-			{% block indextitle %}<div class="page-header"><h1>{% block title %} {{ self.windowtitle() }} {% endblock %}</h1></div>{% endblock %}
 			{% block content %}{% endblock %}
 		<footer>
 		  <p>Powered by <a href="http://getpelican.com/">Pelican</a>. Theme based on <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a>.</p>
