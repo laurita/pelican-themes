@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}{{ SITENAME }} <small>[search]</small>{% endblock %}
+{% block content %}
+<form action="http://google.com/search" method="get">
+    <fieldset role="search">
+        <input type="hidden" name="q" value="site:{{ SITEURL|replace('http://','') }}" />
+        <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+    </fieldset>
+</form> 
+{% endblock %}
